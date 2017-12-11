@@ -6,6 +6,19 @@ body{
     border: solid black;
   }
 
+  ul{
+    .current{
+      list-style-type: disc;
+      font-weight: bold;
+    }
+    .not-current{
+      list-style-type: none;
+    }
+    li:hover{
+      font-weight: bold;
+    }
+  }
+
   .navbar{
     background-color: black;
     color: white;
