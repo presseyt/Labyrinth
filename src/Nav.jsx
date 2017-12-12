@@ -17,13 +17,13 @@ class Nav extends Component{
             <li
               key={i}
               onClick={this.setExpanded(i)}>
-              {problemSet.name}
+              <h5>{problemSet.name}</h5>
               <ul className={this.state.puzzleSet === i ? "visible" : "hidden"}>
                 {problemSet.problem.map((p,j) =>
                   <li
                     key={j}
                     onClick={this.setPuzzle(i,j)}
-                    className={this.state.puzzle === j && thist.state.puzzleSet === i ? "current" : "not-current"}>
+                    className={this.state.puzzle === j && this.state.puzzleSet === i ? "current" : p.solved ? "solved" : "not-current"}>
                     Problem {j}
                   </li>
                 )}

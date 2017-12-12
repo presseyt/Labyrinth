@@ -7,15 +7,30 @@ body{
   }
 
   ul{
+    padding-left: 20px;
+    list-style: none;
+
+    h5{
+      margin-bottom: -3px;
+    }
+
     .current{
-      list-style-type: disc;
       font-weight: bold;
     }
-    .not-current{
-      list-style-type: none;
+    .current:before{
+      content: " • ";
     }
-    li:hover{
+    .not-current:hover, .solved:hover, h5:hover{
       font-weight: bold;
+    }
+    .visible{
+      display: inherit;
+    }
+    .hidden{
+      display: none;
+    }
+    .solved:before{
+      content: "✓";
     }
   }
 
