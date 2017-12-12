@@ -22,8 +22,8 @@ class App extends React.Component {
     if (currentpuzzle.move(e.key)){
     currentpuzzle.draw(canvas);
     if (currentpuzzle.win) window.setTimeout(() => {
-      problemSet[currentpuzzle.i].problem[currentpuzzle.j].solved = true;
-      this.setPuzzle(currentpuzzle.i, currentpuzzle.j + 1)
+      problemSet[this.state.i].problem[this.state.j].solved = true;
+      this.setPuzzle(this.state.i, this.state.j + 1)
       alert('You Win!');
     }, 100);
     if (currentpuzzle.lost) window.setTimeout(() => {
@@ -33,7 +33,7 @@ class App extends React.Component {
   }
   constructor(){
     super();
-    this.state = {message: problemSet[0].problem[0][7]};
+    this.state = {i: 0, j:0, message: problemSet[0].problem[0][7]};
   }
   render() {
     return (
@@ -41,18 +41,21 @@ class App extends React.Component {
       <Header name="Labyrinth"/>
       <div className="container-fluid">
         <div className="row">
-          <Nav problems={problemSet} setPuzzle={this.setPuzzle}/>
+          <Nav problems={problemSet}
+               puzzleSet={this.state.i}
+               puzzle={this.state.j}
+               setPuzzle={this.setPuzzle}/>
           <CurrentPuzzle message={this.state.message}/>
         </div>
       </div>
     </div>);
   }
   setPuzzle = (i,j) => {
-    this.setState({message: problemSet[i].problem[j][7]})
-    currentpuzzle = new Labyrinth(...problemSet[i].problem[j]);
-    currentpuzzle.i = i;
-    currentpuzzle.j = j;
-    currentpuzzle.draw(canvas);
+    if (problemSet[i] && problemSet[i].problem[j]){
+      this.setState({i, j, message: problemSet[i].problem[j][7]})
+      currentpuzzle = new Labyrinth(...problemSet[i].problem[j]);
+      currentpuzzle.draw(canvas);
+    }
   }
 }
 

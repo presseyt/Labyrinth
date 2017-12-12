@@ -3,10 +3,7 @@ import React, {Component} from 'react';
 class Nav extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      puzzleSet: 0,
-      puzzle: 0
-    };
+    this.state = {puzzleSet: this.props.puzzleSet};
   }
 
   render(){
@@ -23,7 +20,7 @@ class Nav extends Component{
                   <li
                     key={j}
                     onClick={this.setPuzzle(i,j)}
-                    className={this.state.puzzle === j && this.state.puzzleSet === i ? "current" : p.solved ? "solved" : "not-current"}>
+                    className={this.props.puzzle === j && this.props.puzzleSet === i ? "current" : p.solved ? "solved" : "not-current"}>
                     Problem {j}
                   </li>
                 )}
@@ -36,9 +33,8 @@ class Nav extends Component{
   }
   setPuzzle = (i,j) => {
     return (e) => {
-      if (this.state.puzzleSet != i || this.state.puzzle != j){
+      if (this.props.puzzleSet != i || this.props.puzzle != j){
         this.props.setPuzzle(i,j);
-        this.setState({puzzleSet: i, puzzle: j});
       }
     };
   }
