@@ -1,14 +1,6 @@
 require('../styles/styles.scss');
 const React = require('react');
 const ReactDOM = require('react-dom');
-import keydown, {ALL_KEYS}  from 'react-keydown';
-
-//initialize puzzle information
-const problemSet = require('../db/labyrinth.json');
-const Labyrinth = require('./labyrinth.js');
-let currentpuzzle = new Labyrinth(...problemSet[0].problem[0]);
-currentpuzzle.i = 0;
-currentpuzzle.j = 0;
 
 
 //set up views
@@ -16,25 +8,15 @@ import Header from './Header.jsx';
 import Nav from './Nav.jsx';
 import CurrentPuzzle from './CurrentPuzzle.jsx';
 
+const problemSet = require('../db/labyrinth.json');
+
+
 class App extends React.Component {
-  @keydown(ALL_KEYS)
-  handleKeyDown (e) {
-    if (currentpuzzle.move(e.key)){
-      currentpuzzle.draw(canvas);
-      if (currentpuzzle.win) window.setTimeout(() => {
-        problemSet[this.state.i].problem[this.state.j].solved = true;
-        this.setPuzzle(this.state.i, this.state.j + 1)
-        alert('You Win!');
-      }, 100);
-      if (currentpuzzle.lost) window.setTimeout(() => {
-        alert('You lost.');
-      }, 100);
-    }
-  }
   constructor(){
     super();
-    this.state = {i: 0, j:0, message: problemSet[0].problem[0][7]};
+    this.state = {i: 0, j:0};
   }
+
   render() {
     return (
     <div>
@@ -45,16 +27,24 @@ class App extends React.Component {
                puzzleSet={this.state.i}
                puzzle={this.state.j}
                setPuzzle={this.setPuzzle}/>
-          <CurrentPuzzle message={this.state.message}/>
+          <CurrentPuzzle
+              i={this.state.i}
+              j={this.state.j}
+              nextPuzzle={this.nextPuzzle}/>
         </div>
       </div>
+      <p>{document.cookie}</p>
     </div>);
   }
+
+  nextPuzzle = () => {
+    problemSet[this.state.i].problem[this.state.j].solved = true;
+    this.setPuzzle(this.state.i, this.state.j + 1)
+  }
+
   setPuzzle = (i,j) => {
     if (problemSet[i] && problemSet[i].problem[j]){
-      this.setState({i, j, message: problemSet[i].problem[j][7]})
-      currentpuzzle = new Labyrinth(...problemSet[i].problem[j]);
-      currentpuzzle.draw(canvas);
+      this.setState({i, j})
     }
   }
 }
@@ -63,7 +53,7 @@ ReactDOM.render(<App/>, document.getElementById('react-root'));
 
 
 
-//set document variables and add event handlers
-let canvas = document.getElementById('canvas');
-currentpuzzle.draw(canvas);
+// //set document variables and add event handlers
+// let canvas = document.getElementById('canvas');
+// currentpuzzle.draw(canvas);
 

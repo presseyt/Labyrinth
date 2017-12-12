@@ -21,7 +21,7 @@ class Nav extends Component{
                     key={j}
                     onClick={this.setPuzzle(i,j)}
                     className={this.props.puzzle === j && this.props.puzzleSet === i ? "current" : p.solved ? "solved" : "not-current"}>
-                    Problem {j}
+                    Problem {j+1}
                   </li>
                 )}
               </ul>
