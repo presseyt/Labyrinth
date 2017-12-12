@@ -20,16 +20,16 @@ class App extends React.Component {
   @keydown(ALL_KEYS)
   handleKeyDown (e) {
     if (currentpuzzle.move(e.key)){
-    currentpuzzle.draw(canvas);
-    if (currentpuzzle.win) window.setTimeout(() => {
-      problemSet[this.state.i].problem[this.state.j].solved = true;
-      this.setPuzzle(this.state.i, this.state.j + 1)
-      alert('You Win!');
-    }, 100);
-    if (currentpuzzle.lost) window.setTimeout(() => {
-      alert('You lost.');
-    }, 100);
-  }
+      currentpuzzle.draw(canvas);
+      if (currentpuzzle.win) window.setTimeout(() => {
+        problemSet[this.state.i].problem[this.state.j].solved = true;
+        this.setPuzzle(this.state.i, this.state.j + 1)
+        alert('You Win!');
+      }, 100);
+      if (currentpuzzle.lost) window.setTimeout(() => {
+        alert('You lost.');
+      }, 100);
+    }
   }
   constructor(){
     super();
