@@ -52,8 +52,3 @@ class App extends React.Component {
 ReactDOM.render(<App/>, document.getElementById('react-root'));
 
 
-
-// //set document variables and add event handlers
-// let canvas = document.getElementById('canvas');
-// currentpuzzle.draw(canvas);
-
