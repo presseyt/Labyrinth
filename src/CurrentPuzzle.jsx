@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 
 //initialize puzzle
 const problemSet = require('../db/labyrinth.json');
-console.log('CP PS:', problemSet);
+const problemSetFinal = require('../db/final.json');
+problemSet.push(...problemSetFinal);
+// console.log('CP PS:', problemSet);
+
 const Labyrinth = require('./labyrinth.js');
 
 
@@ -12,9 +15,6 @@ class Puzzle extends Component{
     this.state = {
       currentPuzzle: new Labyrinth(...problemSet[this.props.i].problem[this.props.j])
     };
-    window.addEventListener("keydown", e => {
-      this.handleKeyDown(e);
-    })
   }
 
   componentWillReceiveProps(nextProps){
@@ -26,7 +26,13 @@ class Puzzle extends Component{
   render(){
     return (
       <div className="col-sm-8 col-md-9 col-xl-10">
-        <h2 id="FFFFF">Current Puzzle</h2>
+        <h2 id="FFFFF" style={{maxWidth:560}}>
+          Current Puzzle: {this.props.j+1}
+          <span style={{float:"right"}}>
+            <span onClick={this.props.prevPuzzle}>⤆</span>
+            <span onClick={this.props.nextPuzzle}>⤇</span>
+          </span>
+        </h2>
         <p> {problemSet[this.props.i].problem[this.props.j][7]} </p>
         <canvas id="canvas" width={600} height={400}> </canvas>
       </div>
@@ -36,14 +42,20 @@ class Puzzle extends Component{
   componentDidUpdate(){
     this.state.currentPuzzle.draw(canvas);
   }
+  componentDidMount(){
+    this.state.currentPuzzle.draw(canvas);
+    window.addEventListener("keydown", e => {
+      this.handleKeyDown(e);
+    })
+  }
 
   handleKeyDown (e) {
-    console.log(e);
+    e.preventDefault();
     if (this.state.currentPuzzle.move(e.key)){
       this.state.currentPuzzle.draw(canvas);
       if (this.state.currentPuzzle.win) window.setTimeout(() => {
         alert('You Win!');
-        this.props.nextPuzzle()
+        this.props.markSolved();
       }, 100);
       if (this.state.currentPuzzle.lost) window.setTimeout(() => {
         alert('You lost.');

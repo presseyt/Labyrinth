@@ -1,8 +1,11 @@
 module.exports = {
   devtool: 'source-map',
-  entry: './src/app.jsx',
+  entry: {
+    app: './src/app.jsx',
+    about: './src/about.jsx'
+  },
   output: {
-    filename: 'bundle.js'
+    filename: '[name]-bundle.js'
   },
   module: {
     rules: [
