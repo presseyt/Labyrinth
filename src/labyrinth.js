@@ -7,6 +7,8 @@ module.exports = class labyrinthGame{
     this._mx = mx;
     this._my = my;
     this._possibleMoves = possibleMoves;
+
+    this._initialPos = {x,y,mx,my};
   }
   get width(){
     return this._possibleMoves.length;
@@ -135,5 +137,11 @@ module.exports = class labyrinthGame{
         return true;
       }
     return false;
+  }
+  reset(){
+    this._x = this._initialPos.x;
+    this._y = this._initialPos.y;
+    this._mx = this._initialPos.mx;
+    this._my = this._initialPos.my;
   }
 }

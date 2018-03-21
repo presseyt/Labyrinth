@@ -5,10 +5,6 @@ class Nav extends Component{
     return (
      <header className="navbar">
        <h1> {this.props.name} </h1>
-       <ul>
-        <li> <a href="/puzzle.html">Puzzles</a> </li>
-        <li> <a href="/about.html">About</a> </li>
-       </ul>
      </header>
     )
   }

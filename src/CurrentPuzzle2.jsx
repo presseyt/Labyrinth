@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 
-//initialize puzzle
-const problemSet = require('../db/labyrinth.json');
-const problemSetBest = require('../db/best.json');
-const problemSetFinal = require('../db/final.json');
-problemSet.push(...problemSetBest);
-problemSet.unshift(...problemSetFinal);
-// console.log('CP PS:', problemSet);
-
+//Labyrinth class:
 const Labyrinth = require('./labyrinth.js');
 
 
@@ -15,27 +8,20 @@ class Puzzle extends Component{
   constructor(props){
     super(props);
     this.state = {
-      currentPuzzle: new Labyrinth(...problemSet[this.props.i].problem[this.props.j])
+      currentPuzzle: new Labyrinth(... props.currentPuzzle)
     };
-  }
-
-  componentWillReceiveProps(nextProps){
-    this.setState({
-      currentPuzzle: new Labyrinth(...problemSet[nextProps.i].problem[nextProps.j])
-    });
   }
 
   render(){
     return (
       <div className="col-sm-8 col-md-9 col-xl-10">
         <h2 id="FFFFF" style={{width: 350}}>
-          Current Puzzle: {this.props.j+1}
+          Current Puzzle: {this.props.id}
           <span style={{float:"right"}}>
             <span onClick={this.props.prevPuzzle}>⤆</span>
             <span onClick={this.props.nextPuzzle}>⤇</span>
           </span>
         </h2>
-        <p> {problemSet[this.props.i].problem[this.props.j][7]} </p>
         <canvas id="canvas" width={600} height={400}> </canvas>
       </div>
     )
@@ -61,9 +47,7 @@ class Puzzle extends Component{
       }, 100);
       if (this.state.currentPuzzle.lost) window.setTimeout(() => {
         alert('You lost.');
-        this.setState({
-          currentPuzzle: new Labyrinth(...problemSet[this.props.i].problem[this.props.j])
-        });
+        this.state.currentPuzzle.reset();
       }, 100);
     }
   }

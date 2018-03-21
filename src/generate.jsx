@@ -5,41 +5,27 @@ const ReactDOM = require('react-dom');
 
 //set up views
 import Header from './Header.jsx';
-import Nav from './Nav.jsx';
-import CurrentPuzzle from './CurrentPuzzle.jsx';
-
-const problemSet = require('../db/labyrinth.json');
-// const problemSetFinal = require('../db/final.json');
-// problemSet.push(...problemSetFinal);
 
 class App extends React.Component {
   constructor(){
     super();
-    this.loadSavedProgress();
-    let[i,j] = this.findFirstUnfinished();
-    this.state = {i, j};
   }
 
   render() {
     return (
-      <div className="page-container">
-        <Header name="Labyrinth"/>
-        <div className="container-fluid">
-          <div className="row">
-            <Nav problems={problemSet}
-                 puzzleSet={this.state.i}
-                 puzzle={this.state.j}
-                 setPuzzle={this.setPuzzle}/>
-            <CurrentPuzzle
-                i={this.state.i}
-                j={this.state.j}
-                markSolved={this.markSolved}
-                nextPuzzle={this.nextPuzzle}
-                prevPuzzle={this.prevPuzzle}/>
-          </div>
+    <div className="page-container">
+      <Header name="Labyrinth"/>
+      <div className="container-fluid">
+        <div className="row">
+          <CurrentPuzzle
+              i={this.state.i}
+              j={this.state.j}
+              markSolved={this.markSolved}
+              nextPuzzle={this.nextPuzzle}
+              prevPuzzle={this.prevPuzzle}/>
         </div>
       </div>
-    );
+    </div>);
   }
 
   markSolved = () => {
