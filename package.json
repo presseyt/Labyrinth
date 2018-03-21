@@ -25,7 +25,7 @@
     "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0 --port 80",
+    "start": "./node_modules/.bin/webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
