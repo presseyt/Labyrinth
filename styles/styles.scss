@@ -1,37 +1,62 @@
 body{
-  background-color: white;
-  color: black;
+  background-color: #eee;
 
-  canvas{
-    border: solid black;
-  }
+  .page-container{
+    max-width: 900px;
+    margin: auto;
 
-  ul{
-    padding-left: 20px;
-    list-style: none;
+    background-color: white;
+    color: black;
 
-    .current{
-      font-weight: bold;
+    .navbar{
+      background-color: black;
+      color: white;
     }
-    .current:before{
-      content: " • ";
-    }
-    .not-current:hover, .solved:hover, h5:hover{
-      font-weight: bold;
-    }
-    .visible{
-      display: inherit;
-    }
-    .hidden{
-      display: none;
-    }
-    .solved:before{
-      content: "✓";
-    }
-  }
 
-  .navbar{
-    background-color: black;
-    color: white;
+    canvas{
+      border: solid black;
+    }
+
+    .sidebar{
+      max-height: 500px;
+      overflow: scroll;
+
+      ul{
+        padding-left: 10px;
+        margin-left: 10px;
+        list-style: none;
+
+        h5{
+          margin-bottom: 2px;
+        }
+
+        .current{
+          font-weight: bold;
+        }
+        .current:before{
+          content: " • ";
+        }
+        .not-current:hover, .solved:hover, h5:hover{
+          font-weight: bold;
+        }
+        .visible{
+          display: inherit;
+        }
+        .hidden{
+          display: none;
+        }
+        .solved:before{
+          content: "✓";
+        }
+
+        li ul {
+          border-left: thin dotted #ddd;
+        }
+        li ul li {
+          line-height: 1.3em;
+        }
+      }
+    }
+
   }
 }

@@ -1,10 +1,16 @@
+const path = require('path');
+
+// const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
+
   devtool: 'source-map',
   entry: {
-    app: './src/app.jsx',
-    about: './src/about.jsx'
+    app: './src/app.jsx'
   },
   output: {
+    path: path.join(__dirname, 'public'),
     filename: '[name]-bundle.js'
   },
   module: {
@@ -27,5 +33,12 @@ module.exports = {
         }]
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([ {from:'src/index.html', to: 'index.html'} ])
+  ]
 };
+
+
+
+
