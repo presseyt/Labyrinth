@@ -25,10 +25,12 @@
     "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
 }
+// "start": "./node_modules/.bin/webpack-dev-server",
