@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Rules from './Rules.jsx'
+
 //initialize puzzle
 const problemSet = require('../db/labyrinth.json');
 const problemSetBest = require('../db/best.json');
@@ -28,6 +30,7 @@ class Puzzle extends Component{
   render(){
     return (
       <div className="col-sm-8 col-md-9 col-xl-10">
+        <Rules display={this.props.i === 0}/>
         <h2 id="FFFFF" style={{width: 350}}>
           Current Puzzle: {this.props.j+1}
           <span style={{float:"right"}}>

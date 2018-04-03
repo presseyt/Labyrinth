@@ -2,7 +2,7 @@ body{
   background-color: #eee;
 
   .page-container{
-    max-width: 900px;
+    max-width: 1200px;
     margin: auto;
 
     background-color: white;
@@ -11,6 +11,14 @@ body{
     .navbar{
       background-color: black;
       color: white;
+    }
+
+    .rules{
+      list-style-type: none;
+      line-height: 1.2em;
+      border: solid grey thin;
+      border-radius: 15px;
+      padding-left: 15px;
     }
 
     canvas{
