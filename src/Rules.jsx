@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class Rules extends Component{
   constructor(props){
+    super();
     this.state.expanded = true;
   }
   render(){
