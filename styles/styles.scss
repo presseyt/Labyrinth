@@ -13,12 +13,26 @@ body{
       color: white;
     }
 
-    .rules{
-      list-style-type: none;
-      line-height: 1.2em;
-      border: solid grey thin;
-      border-radius: 15px;
-      padding-left: 15px;
+    .rulesContainer{
+      .rules{
+        list-style-type: none;
+        line-height: 1.2em;
+        border: solid grey thin;
+        border-radius: 15px;
+        padding-left: 15px;
+
+      }
+      small{
+        padding-left: 1em;
+        font-size: 40%;
+      }
+      small:hover{
+        text-decoration: underline;
+      }
+    }
+
+    .hidden{
+      display: none;
     }
 
     canvas{

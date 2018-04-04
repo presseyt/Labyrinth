@@ -4,9 +4,9 @@ import Rules from './Rules.jsx'
 
 //initialize puzzle
 const problemSet = require('../db/labyrinth.json');
-const problemSetBest = require('../db/best.json');
+// const problemSetBest = require('../db/best.json');
 const problemSetFinal = require('../db/final.json');
-problemSet.push(...problemSetBest);
+// problemSet.push(...problemSetBest);
 problemSet.unshift(...problemSetFinal);
 // console.log('CP PS:', problemSet);
 
