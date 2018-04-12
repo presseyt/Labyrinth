@@ -12,7 +12,7 @@ One question of interest is how you write a computer program to assign a difficu
 
 # Future
 
-Some of the things I hope to improve, give time:
+Some of the things I hope to improve, given time:
 
 * Each maze should have it's own url.  I plan to switch the project over to react router and make the website REST-ful
 * Put the maze generator online, so others can have fun creating mazes.   Implement a service worker to run the genetic algorithm while the graphics are handled on the main site.
