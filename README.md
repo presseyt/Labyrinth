@@ -4,7 +4,7 @@ This project is still under development.  View the last version [here](https://p
 
 ## About
 
-Labyrinth is a puzzle game, that can be surprisingly complex.  This repo contains the end result with over 1000 saved labyrinth puzzles which have been created over several weeks spare time.
+Labyrinth is a puzzle game which starts easy and can be remarkably complex.  This repo contains the end result with over 1000 saved labyrinth puzzles which have been created over several weeks spare time.
 
 A genetic algorithm was used to create the mazes.  Each generation had a population of 100 mazes, which were randomly mutated or combined, then solved and graded by difficulty.  Mazes with a higher difficulty were more likely to survive and pass on to the next generation.  This process was repeated until it showed no improvements, roughly 3000 times.  The top 10% of the mazes are included in the 'database' for the website.
 
