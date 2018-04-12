@@ -13,7 +13,7 @@ class Rules extends Component{
             Rules
             <small>{this.state.expanded ? "[hide]" : "[show]"} </small>
           </h5>
-          <ul className = {this.state.expanded ? "rules" : "hidden"}>
+          <ul className = {this.state.expanded ? "jumbotron" : "hidden"}>
             <li> Evade the minotaur and escape the maze. </li>
             <li> Use the <em>arrow keys</em> to move and the <em>space bar</em> to stay in place. </li>
             <li> The minotaur gets two moves to your one </li>
