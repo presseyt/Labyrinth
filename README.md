@@ -1,5 +1,4 @@
-git@github.com:presseyt/Labyrinth.git
-
+#
 
 This project is still under development.  View the last version [here](https://pacific-stream-64157.herokuapp.com/).
 
