@@ -1,8 +1,8 @@
-#
+# Labyrinth
 
 This project is still under development.  View the last version [here](https://pacific-stream-64157.herokuapp.com/).
 
-##About
+## About
 
 Labyrinth is a puzzle game, that can be surprisingly complex.  This repo contains the end result with over 1000 saved labyrinth puzzles which have been created over several weeks spare time.
 
@@ -10,7 +10,7 @@ A genetic algorithm was used to create the mazes.  Each generation had a populat
 
 One question of interest is how you write a computer program to assign a difficulty score to each maze.  What I ended up using, and seemed to work pretty well, is a function of the solution length (total number of moves in the solution path), solution positions (number of equivalent classes of positions in the solution path), and the total number of positions that you can reach in the maze.
 
-#Future
+# Future
 
 Some of the things I hope to improve, give time:
 
