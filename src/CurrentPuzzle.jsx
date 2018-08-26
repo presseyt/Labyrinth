@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 
-import Rules from './Rules.jsx'
-import About from './About.jsx'
+import Rules from './Rules.jsx';
+import About from './About.jsx';
 
 //initialize puzzle
 const problemSet = require('../db/labyrinth.json');
-// const problemSetBest = require('../db/best.json');
+const problemSetBest = require('../db/best.json');
 const problemSetFinal = require('../db/final.json');
-// problemSet.push(...problemSetBest);
+problemSet.push(...problemSetBest);
 problemSet.unshift(...problemSetFinal);
-// console.log('CP PS:', problemSet);
+console.log('CP PS:', problemSet);
 
 const Labyrinth = require('./labyrinth.js');
 
