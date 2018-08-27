@@ -1,0 +1,44 @@
+
+.Puzzle {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .Puzzle__container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: thick solid black;
+    .Puzzle__column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .Puzzle__cell {
+        flex: 1;
+        position: relative;
+        &.Puzzle__cell--dark { background-color: #ddd; }
+        &.Puzzle__cell--light { background-color: #eee; }
+
+        .Puzzle__wall {
+          position: absolute;
+          z-index: 1;
+          background-color: black;
+        }
+        .Puzzle__wall--left {
+          left: -1px;
+          width: 2px;
+          top: 0;
+          bottom: 0;
+        }
+        .Puzzle__wall--top {
+          top: -1px;
+          height: 2px;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}

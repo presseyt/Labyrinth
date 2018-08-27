@@ -1,84 +1,13 @@
+html {
+  height: 100%;
+  * {
+    box-sizing: border-box;
+  }
+}
 body{
   background-color: #eee;
-
-  .page-container{
-    max-width: 1200px;
-    margin: auto;
-
-    background-color: white;
-    color: black;
-
-    .navbar{
-      background-color: black;
-      color: white;
-    }
-
-    .rulesContainer{
-      .rules{
-        list-style-type: none;
-        line-height: 1.2em;
-        border: solid grey thin;
-        border-radius: 15px;
-        padding-left: 15px;
-
-      }
-      small{
-        padding-left: 1em;
-        font-size: 40%;
-      }
-      small:hover{
-        text-decoration: underline;
-      }
-    }
-
-    .hidden{
-      display: none;
-    }
-
-    canvas{
-      border: solid black;
-    }
-
-    .sidebar{
-      max-height: 500px;
-      overflow: scroll;
-
-      ul{
-        padding-left: 10px;
-        margin-left: 10px;
-        list-style: none;
-
-        h5{
-          margin-bottom: 2px;
-        }
-
-        .current{
-          font-weight: bold;
-        }
-        .current:before{
-          content: " • ";
-        }
-        .not-current:hover, .solved:hover, h5:hover{
-          font-weight: bold;
-        }
-        .visible{
-          display: inherit;
-        }
-        .hidden{
-          display: none;
-        }
-        .solved:before{
-          content: "✓";
-        }
-
-        li ul {
-          border-left: thin dotted #ddd;
-        }
-        li ul li {
-          line-height: 1.3em;
-        }
-      }
-    }
-
+  height: 100%;
+  #react-root {
+    height: 100%;
   }
 }
