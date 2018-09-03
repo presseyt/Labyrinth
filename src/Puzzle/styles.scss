@@ -11,6 +11,7 @@
     height: 100%;
     width: 100%;
     border: thick solid black;
+    position: relative;
     .Puzzle__column {
       flex: 1;
       display: flex;
@@ -40,5 +41,32 @@
         }
       }
     }
+    .Puzzle__Theseus, .Puzzle__Minotaur, .Puzzle__Exit {
+      position: absolute;
+      transition: top .05s linear, left .05s linear;
+    }
+    .Puzzle__Theseus {
+      background-color: green;
+      border-radius: 50%;
+    }
+    .Puzzle__Minotaur {
+      background-color: red;
+      border-radius: 50%;
+    }
+    .Puzzle__Exit {
+      background-color: gold;
+    }
+  }
+  .LoseWindow, .WinWindow {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    background-color: gold;
+    z-index: 2;
+    opacity: 0.95;
+    font-size: 25px;
+    text-align: center;
   }
 }
