@@ -4,32 +4,22 @@ const ReactDOM = require('react-dom');
 import classNames from '../../helpers/classNames';
 import solve from '../../helpers/solver';
 
+import WinMessage from './winMessage.jsx';
+import LoseMessage from './loseMessage.jsx';
+
 require('./styles.scss');
 
 export default class Puzzle extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      maze: props.puzzle && props.puzzle[0],
-      width: props.puzzle && props.puzzle[0].length,
-      height: props.puzzle && props.puzzle[0][0].length,
-      tx: props.puzzle && props.puzzle[1],
-      ty: props.puzzle && props.puzzle[2],
-      ex: props.puzzle && props.puzzle[3],
-      ey: props.puzzle && props.puzzle[4],
-      mx: props.puzzle && props.puzzle[5],
-      my: props.puzzle && props.puzzle[6],
-      moveQueue: [],
-      isLost: false,
-      isWon: false,
-    };
+    this.state = this.getStateFromProps(props);
   }
 
   componentDidMount = () => document.addEventListener('keydown', this.handleKeyPress);
 
   handleKeyPress = (e) => {
-    e.preventDefault();
     e.stopPropagation();
+    if (e.code !== 'Enter') e.preventDefault();
     const { maze, moveQueue } = this.state;
     const { tx, ty, mx, my } = moveQueue[moveQueue.length - 1] || this.state;
     switch(e.code) {
@@ -102,8 +92,11 @@ export default class Puzzle extends React.Component {
     }
   }
 
-  componentWillReceiveProps = (props) => {
-    this.setState({
+  componentWillReceiveProps = (props) => this.setState(this.getStateFromProps(props))
+
+  reset = () => this.setState(this.getStateFromProps(this.props));
+  getStateFromProps = (props) => {
+    return {
       maze: props.puzzle && props.puzzle[0],
       width: props.puzzle && props.puzzle[0].length,
       height: props.puzzle && props.puzzle[0][0].length,
@@ -116,7 +109,7 @@ export default class Puzzle extends React.Component {
       moveQueue: [],
       isLost: false,
       isWon: false,
-    });
+    };
   }
 
   render() {
@@ -148,8 +141,8 @@ export default class Puzzle extends React.Component {
           <div className="Puzzle__Theseus" style={{ left: `${100 * tx / width}%`, top: `${100 * ty / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
           <div className="Puzzle__Minotaur" style={{ left: `${100 * mx / width}%`, top: `${100 * my / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
         </div>
-        {isLost && <div className="LoseWindow"> You lost! </div>}
-        {isWon && <div className="WinWindow"> You won! </div>}
+        {isLost && <LoseMessage onClick={this.reset} />}
+        {isWon && <WinMessage />}
       </div>
     );
   }

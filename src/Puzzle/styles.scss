@@ -57,7 +57,7 @@
       background-color: gold;
     }
   }
-  .LoseWindow, .WinWindow {
+  .LoseMessage, .WinMessage {
     position: absolute;
     left: 35%;
     right: 35%;
@@ -68,5 +68,9 @@
     opacity: 0.95;
     font-size: 25px;
     text-align: center;
+    button {
+      border: 4px inset salmon;
+      &:focus { outline: none; }
+    }
   }
 }
