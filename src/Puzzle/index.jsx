@@ -2,22 +2,23 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 import classNames from '../../helpers/classNames';
+import solve from '../../helpers/solver';
 
 require('./styles.scss');
 
-export default class App extends React.Component {
+export default class Puzzle extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      maze: props.puzzle[0],
-      width: props.puzzle[0].length,
-      height: props.puzzle[0][0].length,
-      tx: props.puzzle[1],
-      ty: props.puzzle[2],
-      ex: props.puzzle[3],
-      ey: props.puzzle[4],
-      mx: props.puzzle[5],
-      my: props.puzzle[6],
+      maze: props.puzzle && props.puzzle[0],
+      width: props.puzzle && props.puzzle[0].length,
+      height: props.puzzle && props.puzzle[0][0].length,
+      tx: props.puzzle && props.puzzle[1],
+      ty: props.puzzle && props.puzzle[2],
+      ex: props.puzzle && props.puzzle[3],
+      ey: props.puzzle && props.puzzle[4],
+      mx: props.puzzle && props.puzzle[5],
+      my: props.puzzle && props.puzzle[6],
       moveQueue: [],
       isLost: false,
       isWon: false,
@@ -64,6 +65,9 @@ export default class App extends React.Component {
         this.handleMinotaurMoves();
         this.handleMinotaurMoves();
         break;
+      case 'KeyS':
+        console.log(solve(this.props.puzzle));
+        break;
     }
     this.advanceState();
   }
@@ -98,14 +102,30 @@ export default class App extends React.Component {
     }
   }
 
+  componentWillReceiveProps = (props) => {
+    this.setState({
+      maze: props.puzzle && props.puzzle[0],
+      width: props.puzzle && props.puzzle[0].length,
+      height: props.puzzle && props.puzzle[0][0].length,
+      tx: props.puzzle && props.puzzle[1],
+      ty: props.puzzle && props.puzzle[2],
+      ex: props.puzzle && props.puzzle[3],
+      ey: props.puzzle && props.puzzle[4],
+      mx: props.puzzle && props.puzzle[5],
+      my: props.puzzle && props.puzzle[6],
+      moveQueue: [],
+      isLost: false,
+      isWon: false,
+    });
+  }
+
   render() {
     const { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon } = this.state;
-    console.log(isLost, isWon);
     return (
       <div className="Puzzle">
         <div className="Puzzle__container" style={{ maxWidth: `${100 * width/height}%`, maxHeight: `${100 * height/width}%`}}>
           {
-            maze.map((row, i) => (
+            maze && maze.map((row, i) => (
               <div className="Puzzle__column" key={i}>
                 {
                   row.map((cell, j) => (

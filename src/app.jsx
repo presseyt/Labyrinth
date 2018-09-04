@@ -3,15 +3,28 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 import Puzzle from './Puzzle/index.jsx';
+import Sidebar from './Sidebar/index.jsx';
 
-const problemSetFinal = require('../db/final.json');
+const problemSetFinal = require('../db/finalfinalfinal.json');
+
+require('./styles.scss');
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { puzzle: null };
+  }
+
+  handlePuzzleSelect = puzzle => this.setState({ puzzle })
+
   render() {
-    console.log(problemSetFinal);
+    const { puzzle } = this.state;
     return (
-      <div style={{ width: 500, height: 500, margin: 'auto' }}>
-        <Puzzle puzzle={problemSetFinal[1].problem[0]} />
+      <div className="App">
+        <Sidebar problemSets={problemSetFinal} onPuzzleSelect={this.handlePuzzleSelect} />
+        <main>
+          <Puzzle puzzle={puzzle} />
+        </main>
       </div>
     );
   }

@@ -1,0 +1,47 @@
+.Sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  grid-auto-rows: minmax(50px, auto);
+  grid-auto-flow: dense;
+  grid-gap: 15px;
+  padding: 10px;
+
+  .Sidebar__problemSet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px dotted black;
+      cursor: pointer;
+    }
+
+    &.Sidebar__problemSet--simple {background-color: aqua; }
+    &.Sidebar__problemSet--easy {background-color: skyblue; }
+    &.Sidebar__problemSet--moderate {background-color: turquoise; }
+    &.Sidebar__problemSet--tricky {background-color: beige; }
+    &.Sidebar__problemSet--challenging {background-color: brown; }
+    &.Sidebar__problemSet--hard {background-color: red; }
+  }
+  .Sidebar__openProblemSet {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    .Sidebar__problem {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      margin: 0 10px 10px 10px;
+      border: 1px solid black;
+      &:last-child { width: 160px; margin-bottom: 0; }
+    }
+  }
+
+}
