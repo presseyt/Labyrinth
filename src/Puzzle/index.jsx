@@ -138,8 +138,8 @@ export default class Puzzle extends React.Component {
             ))
           }
           <div className="Puzzle__Exit" style={{ left: `${100 * ex / width}%`, top: `${100 * ey / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
-          <div className="Puzzle__Theseus" style={{ left: `${100 * tx / width}%`, top: `${100 * ty / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
-          <div className="Puzzle__Minotaur" style={{ left: `${100 * mx / width}%`, top: `${100 * my / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
+          <div className="Puzzle__Theseus" style={{ left: `${(100 * tx + 10) / width}%`, top: `${(100 * ty + 10) / height}%`, width: `${80 / width}%`, height: `${80 / height}%` }} />
+          <div className="Puzzle__Minotaur" style={{ left: `${(100 * mx + 10) / width}%`, top: `${(100 * my + 10) / height}%`, width: `${80 / width}%`, height: `${80 / height}%` }} />
         </div>
         {isLost && <LoseMessage onClick={this.reset} />}
         {isWon && <WinMessage />}

@@ -27,8 +27,9 @@
     &.Sidebar__problemSet--easy {background-color: skyblue; }
     &.Sidebar__problemSet--moderate {background-color: turquoise; }
     &.Sidebar__problemSet--tricky {background-color: beige; }
-    &.Sidebar__problemSet--challenging {background-color: brown; }
+    &.Sidebar__problemSet--challenging {background-color: salmon; }
     &.Sidebar__problemSet--hard {background-color: red; }
+    &.Sidebar__problemSet--diabolical {background-color: firebrick; }
   }
   .Sidebar__openProblemSet {
     grid-column-start: 1;
