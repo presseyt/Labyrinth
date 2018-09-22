@@ -19,10 +19,14 @@ export default class Sidebar extends React.Component {
               className={`Sidebar__problemSet Sidebar__problemSet--${problemSet.difficulty}`}
               onClick={() => this.setState({ openProblemSet: this.state.openProblemset === problemSet.name ? null : problemSet.name })}
             >
+              {this.state.openProblemSet === problemSet.name && (
+                <div className="Sidebar__problemSetHighlight" />
+              )}
               {problemSet.name}
             </div>
             {this.state.openProblemSet === problemSet.name && (
               <div className="Sidebar__openProblemSet">
+                <div className="Sidebar__openProblemSetHighlight" />
                 {problemSet.problems.map((problem, i) => (
                   <div
                     className="Sidebar__problem"

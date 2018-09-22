@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 
 import Puzzle from './Puzzle/index.jsx';
 import Sidebar from './Sidebar/index.jsx';
+import asdf from '../helpers/formatter.js'
 
 const problemSetFinal = require('../db/finalfinalfinal.json');
 
