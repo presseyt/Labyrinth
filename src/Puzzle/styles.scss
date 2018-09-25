@@ -64,7 +64,8 @@
       border-radius: 50%;
     }
     .Puzzle__Exit {
-      background-image: linear-gradient(green, black);
+      background-image: radial-gradient(#07fd03, #06ce03)
+      /*background-image: linear-gradient(green, black);*/
     }
   }
   .LoseMessage, .WinMessage {
