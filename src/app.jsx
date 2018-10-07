@@ -14,19 +14,25 @@ require('./styles.scss');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { puzzle: null };
+    this.state = { page: null, puzzle: null };
   }
 
   handlePuzzleSelect = puzzle => this.setState({ puzzle })
+  handlePageSelect = page => this.setState({ page })
 
   render() {
-    const { puzzle } = this.state;
+    const { page, puzzle } = this.state;
     console.log('PuzzleGenerator RENDER', this.state);
     return (
       <div className="App">
-        <main>
-          <PuzzleGenerator />
-          </main>
+        <Navigation
+          page={page}
+          problemSets={problemSetFinal}
+          onPageSelect={this.handlePageSelect}
+          onPuzzleSelect={this.handlePuzzleSelect}
+        />
+        {page === 'generate' && <PuzzleGenerator />}
+        {page === 'puzzle' && <Puzzle puzzle={puzzle} />}
       </div>
     );
     // );    return (

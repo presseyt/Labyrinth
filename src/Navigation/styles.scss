@@ -1,4 +1,4 @@
-.Sidebar {
+.PuzzleNav {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   grid-gap: 15px;
   padding: 10px;
 
-  .Sidebar__problemSet {
+  .PuzzleNav__problemSet {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@
       cursor: pointer;
     }
 
-    .Sidebar__problemSetHighlight {
+    .PuzzleNav__problemSetHighlight {
       background-color: white;
       position: absolute;
       z-index: -1;
@@ -35,20 +35,20 @@
       border-radius: 10px;
     }
 
-    &.Sidebar__problemSet--simple {background-color: aqua; }
-    &.Sidebar__problemSet--easy {background-color: skyblue; }
-    &.Sidebar__problemSet--moderate {background-color: turquoise; }
-    &.Sidebar__problemSet--tricky {background-color: beige; }
-    &.Sidebar__problemSet--challenging {background-color: salmon; }
-    &.Sidebar__problemSet--hard {background-color: red; }
-    &.Sidebar__problemSet--diabolical {background-color: firebrick; }
+    &.PuzzleNav__problemSet--simple {background-color: aqua; }
+    &.PuzzleNav__problemSet--easy {background-color: skyblue; }
+    &.PuzzleNav__problemSet--moderate {background-color: turquoise; }
+    &.PuzzleNav__problemSet--tricky {background-color: beige; }
+    &.PuzzleNav__problemSet--challenging {background-color: salmon; }
+    &.PuzzleNav__problemSet--hard {background-color: red; }
+    &.PuzzleNav__problemSet--diabolical {background-color: firebrick; }
   }
-  .Sidebar__openProblemSet {
+  .PuzzleNav__openProblemSet {
     grid-column-start: 1;
     grid-column-end: 4;
     position: relative;
 
-    .Sidebar__openProblemSetHighlight {
+    .PuzzleNav__openProblemSetHighlight {
       background-color: white;
       position: absolute;
       z-index: -1;
@@ -59,7 +59,7 @@
       border-radius: 10px;
     }
 
-    .Sidebar__problem {
+    .PuzzleNav__problem {
       display: inline-block;
       height: 40px;
       width: 40px;
