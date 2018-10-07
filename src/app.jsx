@@ -2,8 +2,9 @@ require('../styles/styles.scss');
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+import Navigation from './Navigation/index.jsx';
 import Puzzle from './Puzzle/index.jsx';
-import Sidebar from './Sidebar/index.jsx';
+import PuzzleGenerator from './PuzzleGenerator/index.jsx';
 import asdf from '../helpers/formatter.js'
 
 const problemSetFinal = require('../db/finalfinalfinal.json');
@@ -20,14 +21,22 @@ class App extends React.Component {
 
   render() {
     const { puzzle } = this.state;
+    console.log('PuzzleGenerator RENDER', this.state);
     return (
       <div className="App">
-        <Sidebar problemSets={problemSetFinal} onPuzzleSelect={this.handlePuzzleSelect} />
         <main>
-          <Puzzle puzzle={puzzle} />
-        </main>
+          <PuzzleGenerator />
+          </main>
       </div>
     );
+    // );    return (
+    //   <div className="App">
+    //     <Navigation problemSets={problemSetFinal} onPuzzleSelect={this.handlePuzzleSelect} />
+    //     <main>
+    //       <Puzzle puzzle={puzzle} />
+    //     </main>
+    //   </div>
+    // );
   }
 }
 
