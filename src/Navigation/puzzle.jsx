@@ -9,6 +9,10 @@ export default class PuzzleNav extends React.Component {
     this.state = { openProblemSet: null };
   }
 
+  handleProblemSetClick = (problemSet) => {
+    this.setState({ openProblemSet: (this.state.openProblemSet === problemSet.name) ? null : problemSet.name });
+  }
+
   render() {
     const { problemSets } = this.props;
     return (
@@ -17,12 +21,12 @@ export default class PuzzleNav extends React.Component {
           <React.Fragment key={problemSet.name}>
             <div
               className={`PuzzleNav__problemSet PuzzleNav__problemSet--${problemSet.difficulty}`}
-              onClick={() => this.setState({ openProblemSet: this.state.openProblemset === problemSet.name ? null : problemSet.name })}
+              onClick={() => this.handleProblemSetClick(problemSet)}
             >
               {this.state.openProblemSet === problemSet.name && (
                 <div className="PuzzleNav__problemSetHighlight" />
               )}
-              {problemSet.name}
+              <div className="PuzzleNav__problemName">{problemSet.name}</div>
             </div>
             {this.state.openProblemSet === problemSet.name && (
               <div className="PuzzleNav__openProblemSet">

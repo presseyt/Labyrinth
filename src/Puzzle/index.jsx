@@ -16,10 +16,12 @@ export default class Puzzle extends React.Component {
   }
 
   componentDidMount = () => document.addEventListener('keydown', this.handleKeyPress);
+  componentWillUnmount = () => document.removeEventListener('keydown', this.handleKeyPress);
 
   handleKeyPress = (e) => {
     e.stopPropagation();
     if (e.code !== 'Enter') e.preventDefault();
+    if (this.state.isWon || this.state.isLost) return;
     const { maze, moveQueue } = this.state;
     const { tx, ty, mx, my } = moveQueue[moveQueue.length - 1] || this.state;
     switch(e.code) {
