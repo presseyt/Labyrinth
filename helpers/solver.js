@@ -52,7 +52,7 @@ export default function solve(puzzle) {
           hashTable[nextPos.tx][nextPos.ty][nextPos.mx][nextPos.my] = hashIndex;
           if (nextPos.tx !== nextPos.mx || nextPos.ty !== nextPos.my) {
             stack.push(nextPos);
-            if (nextPos.tx === ex && nextPos.ty === ey && !solInfo.path) solInfo.path = nextPos.path;
+            if (nextPos.tx === ex && nextPos.ty === ey && !solInfo.path) solInfo.path = nextPos.path.length;
           }
         }
       }
