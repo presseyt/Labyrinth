@@ -11,8 +11,8 @@ export default class LoseMessage extends React.Component {
   render() {
     return (
       <div className="LoseMessage">
-        You lose!
-        <button ref={this.setRef} onClick={this.props.onClick}> Continue </button>
+        <h2> You lose! </h2>
+        <button ref={this.setRef} onClick={this.props.onClick}> Try again </button>
       </div>
     );
   }

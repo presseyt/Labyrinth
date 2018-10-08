@@ -3,7 +3,10 @@
   position: relative;
   height: 70vw;
   width: 70vw;
-  margin-left: 210px;
+  max-height: 90vh;
+  max-width: 90vh;
+  margin-left: 28.5vw;
+  padding-top: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,18 +74,27 @@
   }
   .LoseMessage, .WinMessage {
     position: absolute;
-    left: 35%;
-    right: 35%;
-    top: 35%;
-    bottom: 35%;
-    background-color: chocolate;
+    font-family: chalkboard;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    bottom: 30%;
+    background-color: #e1c129;
+    border-radius: 4px;
+    box-shadow: 2px 2px 9px black;
     z-index: 2;
-    opacity: 0.95;
     font-size: 25px;
     text-align: center;
     button {
-      border: 4px inset salmon;
+      border: 2px solid black;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: inherit;
       &:focus { outline: none; }
+      &:hover {
+        background-color: #da7e16;
+        cursor: pointer;
+      }
     }
   }
 }

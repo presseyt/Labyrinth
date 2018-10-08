@@ -10,6 +10,12 @@ export default class Sidebar extends React.Component {
     const { page, problemSets, onPuzzleSelect, onPageSelect } = this.props;
     return (
       <div className="Navigation">
+        { page && (
+          <div className="Navigation__header">
+            <button onClick={() => onPageSelect(null)} />
+            { page }
+          </div>
+        )}
         { page === 'puzzle' ? (
             <PuzzleNav problemSets={problemSets} onPuzzleSelect={onPuzzleSelect} />
           ) : (

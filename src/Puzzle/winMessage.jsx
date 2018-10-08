@@ -11,7 +11,7 @@ export default class WinMessage extends React.Component {
   render() {
     return (
       <div className="WinMessage">
-        You win!
+        <h2> You win! </h2>
         <button ref={this.setRef} onClick={() => alert('hi')}> Continue </button>
       </div>
     );
