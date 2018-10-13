@@ -116,6 +116,11 @@
 
     ]
   },{
+    "name": "new puzzles",
+    "problem": [
+[[[[false,true,false,true,true],[false,true,true,true,true],[false,true,true,true,true],[false,true,true,false,true]],[[true,true,false,true,true],[true,false,true,false,true],[true,true,false,false,true],[true,true,false,false,true]],[[true,true,false,false,true],[false,false,false,true,true],[true,false,true,false,true],[true,true,false,false,true]],[[true,false,false,true,true],[false,false,true,true,true],[false,false,true,true,true],[true,false,true,false,true]]],3,3,0,2,3,0]
+    ]
+  },{
     "name": "level 1 - 1",
     "problem": [
       [[[[false,true,false,false,true],[false,true,false,true,true],[false,true,true,false,true],[false,true,false,true,true],[false,true,true,false,true],[false,true,false,false,true]],[[true,true,false,true,true],[true,true,true,true,true],[true,true,true,true,true],[true,true,true,true,true],[true,true,true,true,true],[true,true,true,false,true]],[[true,false,false,true,true],[true,false,true,false,true],[true,false,false,true,true],[true,false,true,false,true],[true,false,false,true,true],[true,false,true,false,true]]],1,1,0,5,1,0],
