@@ -12,7 +12,7 @@ export default class WinMessage extends React.Component {
     return (
       <div className="WinMessage">
         <h2> You win! </h2>
-        <button ref={this.setRef} onClick={() => alert('hi')}> Continue </button>
+        <button ref={this.setRef} onClick={this.props.onNextPuzzle}> Continue </button>
       </div>
     );
   }

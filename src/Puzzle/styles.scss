@@ -1,102 +1,107 @@
 
 .Puzzle {
   position: relative;
-  height: 70vw;
-  width: 70vw;
+  height: 90vw;
+  width: 90vw;
   max-height: 90vh;
   max-width: 90vh;
-  margin-left: 28.5vw;
-  padding-top: 5vh;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  .Puzzle__container {
+}
+.Puzzle__header {
     display: flex;
-    height: 100%;
-    width: 100%;
-    border: 4px solid black;
-    border-radius: 2px;
-    position: relative;
-    .Puzzle__column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      .Puzzle__cell {
-        flex: 1;
-        position: relative;
-        &.Puzzle__cell--dark {
-          background-color: #eee;
-        }
-        &.Puzzle__cell--light {
-          background-color: #ddd;
-        }
-
-        .Puzzle__wall {
-          position: absolute;
-          z-index: 1;
-          background-color: black;
-          border-radius: 2px;
-          box-shadow: 1px 2px 5px grey;
-        }
-        .Puzzle__wall--left {
-          left: -2px;
-          width: 4px;
-          top: -2px;
-          bottom: -2px;
-        }
-        .Puzzle__wall--top {
-          top: -2px;
-          height: 4px;
-          left: -2px;
-          right: -2px;
-        }
-      }
-    }
-    .Puzzle__Theseus, .Puzzle__Minotaur, .Puzzle__Exit {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 70px;
-      transition: top .05s linear, left .05s linear;
-    }
-    .Puzzle__Theseus {
-      background-image: radial-gradient(dodgerblue, rgb(85,85,255));
-      border-radius: 50%;
-    }
-    .Puzzle__Minotaur {
-      background-image: radial-gradient(rgb(170,20,20), maroon);
-      border-radius: 50%;
-    }
-    .Puzzle__Exit {
-      background-image: radial-gradient(#07fd03, #06ce03)
-      /*background-image: linear-gradient(green, black);*/
-    }
+    align-items: space-between;
+}
+.Puzzle__container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border: 4px solid black;
+  border-radius: 2px;
+  position: relative;
+}
+.Puzzle__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.Puzzle__cell {
+  flex: 1;
+  position: relative;
+  &.Puzzle__cell--dark {
+    background-color: #eee;
   }
-  .LoseMessage, .WinMessage {
-    position: absolute;
-    font-family: chalkboard;
-    left: 30%;
-    right: 30%;
-    top: 30%;
-    bottom: 30%;
-    background-color: #e1c129;
-    border-radius: 4px;
-    box-shadow: 2px 2px 9px black;
-    z-index: 2;
-    font-size: 25px;
-    text-align: center;
-    button {
-      border: 2px solid black;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: inherit;
-      background-color: inherit;
-      &:focus { outline: none; }
-      &:hover {
-        background-color: #da7e16;
-        cursor: pointer;
-      }
+  &.Puzzle__cell--light {
+    background-color: #ddd;
+  }
+}
+.Puzzle__wall {
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  border-radius: 2px;
+  box-shadow: 1px 2px 5px grey;
+}
+.Puzzle__wall--left {
+  left: -2px;
+  width: 4px;
+  top: -2px;
+  bottom: -2px;
+}
+.Puzzle__wall--top {
+  top: -2px;
+  height: 4px;
+  left: -2px;
+  right: -2px;
+}
+.Puzzle__Theseus, .Puzzle__Minotaur, .Puzzle__Exit {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  transition: top .05s linear, left .05s linear;
+}
+.Puzzle__Theseus {
+  background-image: radial-gradient(dodgerblue, rgb(85,85,255));
+  border-radius: 50%;
+}
+.Puzzle__Minotaur {
+  background-image: radial-gradient(rgb(170,20,20), maroon);
+  border-radius: 50%;
+}
+.Puzzle__Exit {
+  background-image: radial-gradient(#07fd03, #06ce03)
+  /*background-image: linear-gradient(green, black);*/
+}
+
+
+.LoseMessage, .WinMessage {
+  position: absolute;
+  font-family: chalkboard;
+  left: 30%;
+  right: 30%;
+  top: 30%;
+  bottom: 30%;
+  background-color: #e1c129;
+  border-radius: 4px;
+  box-shadow: 2px 2px 9px black;
+  z-index: 2;
+  font-size: 25px;
+  text-align: center;
+  button {
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: inherit;
+    &:focus { outline: none; }
+    &:hover {
+      background-color: #da7e16;
+      cursor: pointer;
     }
   }
 }

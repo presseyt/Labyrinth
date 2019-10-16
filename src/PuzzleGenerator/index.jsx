@@ -1,38 +1,51 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 import Puzzle from '../Puzzle/index.jsx';
+import Pane from './pane.jsx';
 
 require('./styles.scss');
 
 export default class PuzzleGenerator extends React.Component {
   constructor(props) {
     super(props);
+
+    var worker = new Worker('./webworker.js');
+    worker.onmessage = this.onWorkerMessage;
+
     this.state = {
       puzzle: undefined,
-      difficulties: [],
+      building: false,
+      worker: worker,
+      workerData: [],
     };
   }
-  componentDidMount = () => {
-    var worker = new Worker('./webworker.js');
-    worker.onmessage = (e) => {
-      console.log('PUZZLE GENERATOR', e.data);
-      const { action, maze, difficulty } = e.data;
-      const puzzle = maze && [maze._possibleMoves, maze._x, maze._y, maze._ex, maze._ey, maze._mx, maze._my];
-      console.log(action, maze, difficulty, puzzle)
-      if (puzzle) {
-        console.log('setting state');
-        this.state.difficulties.push(difficulty);
-        this.setState({ puzzle });
-      }
+
+  onWorkerMessage = (e) => {
+    // console.log('PUZZLE GENERATOR', e.data);
+    const { action, maze, difficulty, solInfo, epoch } = e.data;
+    const puzzle = maze && [maze._possibleMoves, maze._x, maze._y, maze._ex, maze._ey, maze._mx, maze._my];
+    // console.log(action, maze, difficulty, puzzle)
+    if (action === 'running') {
+      // console.log('setting state');
+      this.state.workerData.push({ puzzle, difficulty, solInfo, epoch });
+      this.setState({ puzzle });
+    } else if (action === 'done') {
+      console.log('done');
+      this.setState({ building: false });
     }
-    worker.postMessage({ action: 'build' });
+  }
+  startWorker = (data) => {
+    if(this.state.worker && this.state.worker.postMessage) {
+      this.state.worker.postMessage({ action: 'build', data });
+      this.setState({ building: true, workerData: [] })
+    }
   }
 
   render() {
     const { puzzle } = this.state;
     return (
       <div className="PuzzleGenerator">
+        <Pane onSubmit={this.startWorker} />
         <Puzzle puzzle={puzzle} />
       </div>
     )

@@ -7,24 +7,15 @@ require('./styles.scss');
 
 export default class Sidebar extends React.Component {
   render() {
-    const { page, problemSets, onPuzzleSelect, onPageSelect } = this.props;
+    const { page, problemSets, onPuzzleSelect, onPageSelect, onProblemSetSelect } = this.props;
     return (
       <div className="Navigation">
-        { page && (
-          <div className="Navigation__header">
-            <button onClick={() => onPageSelect(null)} />
-            { page }
-          </div>
-        )}
-        { page === 'puzzle' ? (
-            <PuzzleNav problemSets={problemSets} onPuzzleSelect={onPuzzleSelect} />
-          ) : (
-            <div className="NavButtons">
-              <button onClick={() => onPageSelect('puzzle')}> Puzzles </button>
-              <button onClick={() => onPageSelect('generate')}> Generate </button>
-            </div>
-          )
-        }
+        <div className="NavButtons">
+          <button onClick={() => onPageSelect('puzzle')}> Puzzles </button>
+          <button onClick={() => onPageSelect('generate')}> Generate </button>
+        </div>
+
+        <PuzzleNav problemSets={problemSets} onPuzzleSelect={onPuzzleSelect} onProblemSetSelect={onProblemSetSelect} />
       </div>
     );
   }

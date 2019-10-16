@@ -19,13 +19,12 @@ export default class Puzzle extends React.Component {
   componentWillUnmount = () => document.removeEventListener('keydown', this.handleKeyPress);
 
   handleKeyPress = (e) => {
-    e.stopPropagation();
-    if (e.code !== 'Enter') e.preventDefault();
     if (this.state.isWon || this.state.isLost) return;
     const { maze, moveQueue } = this.state;
     const { tx, ty, mx, my } = moveQueue[moveQueue.length - 1] || this.state;
     switch(e.code) {
       case 'ArrowLeft':
+      case 'KeyA':
         if (maze[tx][ty][0]) {
           moveQueue.push({ tx: tx - 1, ty, mx, my });
           this.handleMinotaurMoves();
@@ -33,6 +32,7 @@ export default class Puzzle extends React.Component {
         }
         break;
       case 'ArrowRight':
+      case 'KeyD':
         if (maze[tx][ty][1]) {
           moveQueue.push({ tx: tx + 1, ty, mx, my });
           this.handleMinotaurMoves();
@@ -40,6 +40,7 @@ export default class Puzzle extends React.Component {
         }
         break;
       case 'ArrowUp':
+      case 'KeyW':
         if (maze[tx][ty][2]) {
           moveQueue.push({ tx, ty: ty - 1, mx, my });
           this.handleMinotaurMoves();
@@ -47,6 +48,7 @@ export default class Puzzle extends React.Component {
         }
         break;
       case 'ArrowDown':
+      case 'KeyS':
         if (maze[tx][ty][3]) {
           moveQueue.push({ tx, ty: ty + 1, mx, my });
           this.handleMinotaurMoves();
@@ -56,9 +58,6 @@ export default class Puzzle extends React.Component {
       case 'Space':
         this.handleMinotaurMoves();
         this.handleMinotaurMoves();
-        break;
-      case 'KeyS':
-        console.log(solve(this.props.puzzle));
         break;
     }
     this.advanceState();
@@ -118,6 +117,11 @@ export default class Puzzle extends React.Component {
     const { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon } = this.state;
     return (
       <div className="Puzzle">
+        <header className="Puzzle__header">
+          {this.props.problemSet.name}
+          Rules
+          Options
+        </header>
         <div className="Puzzle__container" style={{ maxWidth: `${100 * width/height}%`, maxHeight: `${100 * height/width}%`}}>
           {
             maze && maze.map((row, i) => (
@@ -144,7 +148,7 @@ export default class Puzzle extends React.Component {
           <div className="Puzzle__Minotaur" style={{ left: `${(100 * mx + 10) / width}%`, top: `${(100 * my + 10) / height}%`, width: `${80 / width}%`, height: `${80 / height}%` }} />
         </div>
         {isLost && <LoseMessage onClick={this.reset} />}
-        {isWon && <WinMessage />}
+        {isWon && <WinMessage {...this.props} />}
       </div>
     );
   }

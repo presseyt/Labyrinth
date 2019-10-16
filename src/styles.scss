@@ -1,10 +1,10 @@
 body {
   margin: 0;
-  .App {
-    >main {
-      margin-left: 200px;
-      height: 500px;
-      width: 500px;
-    }
-  }
+}
+
+.App {
+    width: 90vw;
+    height: 100vh;
+    max-width: 960px;
+    margin: auto;
 }

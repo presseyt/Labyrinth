@@ -10,6 +10,7 @@ export default class PuzzleNav extends React.Component {
   }
 
   handleProblemSetClick = (problemSet) => {
+    this.props.onProblemSetSelect(problemSet)
     this.setState({ openProblemSet: (this.state.openProblemSet === problemSet.name) ? null : problemSet.name });
   }
 
