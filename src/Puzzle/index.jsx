@@ -114,15 +114,12 @@ export default class Puzzle extends React.Component {
   }
 
   render() {
-    const { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon } = this.state;
+    let { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon, clientHeight, clientWidth } = this.state;
+    clientHeight = clientHeight || document.body.clientHeight;
+    clientWidth = clientWidth || document.body.clientWidth;
+    const cellSize = 0.9 * Math.min(clientHeight / height, clientWidth / width);
     return (
-      <div className="Puzzle">
-        <header className="Puzzle__header">
-          {this.props.problemSet.name}
-          Rules
-          Options
-        </header>
-        <div className="Puzzle__container" style={{ maxWidth: `${100 * width/height}%`, maxHeight: `${100 * height/width}%`}}>
+      <div className="Puzzle" style={{ height: cellSize * height, width: cellSize * width }}>
           {
             maze && maze.map((row, i) => (
               <div className="Puzzle__column" key={i}>
@@ -130,6 +127,7 @@ export default class Puzzle extends React.Component {
                   row.map((cell, j) => (
                     <div
                       key={j}
+                      style={{ width: cellSize, height: cellSize }}
                       className={classNames('Puzzle__cell', {
                         'Puzzle__cell--dark': (i + j) % 2 === 0,
                         'Puzzle__cell--light': (i + j) % 2 === 1,
@@ -143,12 +141,11 @@ export default class Puzzle extends React.Component {
               </div>
             ))
           }
-          <div className="Puzzle__Exit" style={{ left: `${100 * ex / width}%`, top: `${100 * ey / height}%`, width: `${100 / width}%`, height: `${100 / height}%` }} />
-          <div className="Puzzle__Theseus" style={{ left: `${(100 * tx + 10) / width}%`, top: `${(100 * ty + 10) / height}%`, width: `${80 / width}%`, height: `${80 / height}%` }} />
-          <div className="Puzzle__Minotaur" style={{ left: `${(100 * mx + 10) / width}%`, top: `${(100 * my + 10) / height}%`, width: `${80 / width}%`, height: `${80 / height}%` }} />
-        </div>
-        {isLost && <LoseMessage onClick={this.reset} />}
-        {isWon && <WinMessage {...this.props} />}
+          <div className="Puzzle__Exit" style={{ left: cellSize * ex, top: cellSize * ey, width: cellSize, height: cellSize }} />
+          <div className="Puzzle__Theseus" style={{ left: cellSize * (tx + 0.1), top: cellSize * (ty + 0.1), width: cellSize * 0.8, height: cellSize * 0.8 }} />
+          <div className="Puzzle__Minotaur" style={{ left: cellSize * (mx + 0.1), top: cellSize * (my + 0.1), width: cellSize * 0.8 , height: cellSize * 0.8 }} />
+          {isLost && <LoseMessage onClick={this.reset} />}
+          {isWon && <WinMessage {...this.props} />}
       </div>
     );
   }

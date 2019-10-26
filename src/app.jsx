@@ -5,12 +5,12 @@ const ReactDOM = require('react-dom');
 const problemSetFinal = require('../db/finalfinalfinal.json');
 
 import Navigation from './Navigation/index.jsx';
-import Puzzle from './Puzzle/index.jsx';
+import PuzzlePage from './PuzzlePage/index.jsx';
 import PuzzleGenerator from './PuzzleGenerator/index.jsx';
 // import asdf from '../helpers/formatter.js'
 const pages = {
     'home': Navigation,
-    'puzzle': Puzzle,
+    'puzzle': PuzzlePage,
     'gen': PuzzleGenerator
 };
 
