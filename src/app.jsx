@@ -2,7 +2,7 @@ require('../styles/styles.scss');
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const problemSetFinal = require('../db/finalfinalfinal.json');
+const puzzlesById = require('../db/ww.json');
 
 import Navigation from './Navigation/index.jsx';
 import PuzzlePage from './PuzzlePage/index.jsx';
@@ -11,7 +11,7 @@ import PuzzleGenerator from './PuzzleGenerator/index.jsx';
 const pages = {
     'home': Navigation,
     'puzzle': PuzzlePage,
-    'gen': PuzzleGenerator
+    'generate': PuzzleGenerator
 };
 
 require('./styles.scss');
@@ -19,38 +19,40 @@ require('./styles.scss');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { page: 'home', puzzle: null, problemSet: null };
+    this.state = { page: 'home', puzzleId: null, problemSet: null };
   }
 
-  handleProblemSetSelect = problemSet => this.setState({ problemSet })
-  handlePuzzleSelect = puzzle => this.setState({ puzzle })
+  handleProblemSetSelect = problemSet => {
+      this.setState({ problemSet, page: 'puzzle', puzzleId: problemSet[0] })
+  }
   handlePageSelect = page => this.setState({ page })
   handleNextPuzzle = () => {
-      const { puzzle, problemSet } = this.state;
-      if (!puzzle || !problemSet) return;
-      const i = problemSet.problems.findIndex((x) => x === puzzle);
+      const { puzzleId, problemSet } = this.state;
+      if (!puzzleId || !problemSet) return;
+      const i = problemSet.findIndex((id) => id === puzzleId);
       if (i < 0) return;
-      if (i >= problemSet.problems.length - 1) {
-          return this.setState({ puzzle: null, problemSet: null, page: 'home' });
+      if (i >= problemSet.length - 1) {
+          return this.setState({ puzzleId: null, problemSet: null, page: 'home' });
       }
-      this.setState({ puzzle: problemSet.problems[i + 1]})
+      console.log('HANDLE NEXT PUZZLE', problemSet[i + 1])
+      this.setState({ puzzleId: problemSet[i + 1]})
   }
 
+
   render() {
-    const { page, puzzle, problemSet } = this.state;
+    const { page, puzzleId, problemSet } = this.state;
     const Page = pages[page] || Navigation
-    console.log('PuzzleGenerator RENDER', this.state);
+    console.log('APP render', page, puzzleId, problemSet)
     return (
       <div className="App">
+        <button onClick={this.handleNextPuzzle}>NEXT</button>
         <Page
-          problemSets={problemSetFinal}
           problemSet={problemSet}
           onPageSelect={this.handlePageSelect}
-          onPuzzleSelect={this.handlePuzzleSelect}
           onProblemSetSelect={this.handleProblemSetSelect}
           onNextPuzzle={this.handleNextPuzzle}
-          onPrevPuzzle={this.handlePrevPuzzle}
-          puzzle={puzzle}
+          puzzleId={puzzleId}
+          puzzlesById={puzzlesById}
         />
       </div>
     );
