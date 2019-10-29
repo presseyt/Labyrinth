@@ -42,10 +42,8 @@ class App extends React.Component {
   render() {
     const { page, puzzleId, problemSet } = this.state;
     const Page = pages[page] || Navigation
-    console.log('APP render', page, puzzleId, problemSet)
     return (
       <div className="App">
-        <button onClick={this.handleNextPuzzle}>NEXT</button>
         <Page
           problemSet={problemSet}
           onPageSelect={this.handlePageSelect}

@@ -1,7 +1,34 @@
 .PuzzlePage {
-
+    position: relative;
+    width: min-content;
+    margin: auto;
 }
 
 .PuzzlePage__header {
+    display: flex;
+    align-items: flex-end;
 
+    >span {
+        margin-left: 10px;
+        color: blue;
+        text-shadow: 0 0 6px lightblue;
+        cursor: pointer;
+        &:hover {
+            text-shadow: 0 0 6px #38acd2;
+        }
+    }
+
+    .PuzzlePage__left {
+        flex: 1;
+        margin-left: 0;
+    }
+
+    .PuzzlePage__mini{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform-origin: bottom left;
+        transform: rotate(-90deg);
+        font-size: 0.5em
+    }
 }
