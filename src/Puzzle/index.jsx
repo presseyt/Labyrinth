@@ -131,7 +131,7 @@ export default class Puzzle extends React.Component {
     const { silly, size } = this.props;
     clientHeight = clientHeight || document.body.clientHeight;
     clientWidth = clientWidth || document.body.clientWidth;
-    const cellSize = Math.min((size || 0.9) * Math.min(clientHeight / height, clientWidth / width), 60);
+    const cellSize = Math.min((size || 0.9) * Math.min(clientHeight / height, clientWidth / width), 90);
     return (
       <div className="Puzzle" style={{ height: cellSize * height, width: cellSize * width }}>
           {
