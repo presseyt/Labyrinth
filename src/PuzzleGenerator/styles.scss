@@ -2,5 +2,12 @@
   height: 100%;
 }
 .PuzzleGeneratorOptions {
-  margin-left: 30vw;
+  margin: auto;
+
+  label {
+      font-size: 0.8em;
+  }
+  input {
+    margin-right: 1em;
+  }
 }

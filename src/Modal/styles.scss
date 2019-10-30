@@ -1,0 +1,66 @@
+.Modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.Modal__overlay {
+    background: #ffffff91;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.Modal__x {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.Message {
+  width: 250px;
+  padding: 25px;
+
+  background-color: #e1c129;
+  border-radius: 4px;
+  box-shadow: 2px 2px 9px black;
+  z-index: 2;
+
+  h2 {
+      font-size: 1.5em;
+      margin: 0.5em 0;
+  }
+}
+.Message__buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 0.5em 0;
+    button {
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background-color: inherit;
+      &:focus {
+        background-color: #ffec81;
+      }
+      &:hover {
+        background-color: #da7e16;
+        cursor: pointer;
+      }
+    }
+}

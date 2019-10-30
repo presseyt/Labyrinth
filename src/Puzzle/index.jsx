@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 import classNames from '../../helpers/classNames';
 import solve from '../../helpers/solver';
 
+import Modal from '../Modal/index.jsx'
 import WinMessage from './winMessage.jsx';
 import LoseMessage from './loseMessage.jsx';
 
@@ -16,10 +17,12 @@ export default class Puzzle extends React.Component {
   }
 
   componentDidMount = () => document.addEventListener('keydown', this.handleKeyPress);
-  componentWillUnmount = () => document.removeEventListener('keydown', this.handleKeyPress);
+  componentWillUnmount = () => {
+      document.removeEventListener('keydown', this.handleKeyPress);
+  }
 
   handleKeyPress = (e) => {
-    if (this.state.isWon || this.state.isLost) return;
+    if (this.state.isWon || this.state.isLost || this.props.static) return;
     const { maze, moveQueue } = this.state;
     const { tx, ty, mx, my } = moveQueue[moveQueue.length - 1] || this.state;
     switch(e.code) {
@@ -29,6 +32,7 @@ export default class Puzzle extends React.Component {
           moveQueue.push({ tx: tx - 1, ty, mx, my });
           this.handleMinotaurMoves();
           this.handleMinotaurMoves();
+          this.setState({ numMoves: this.state.numMoves + 1 });
         }
         break;
       case 'ArrowRight':
@@ -37,6 +41,7 @@ export default class Puzzle extends React.Component {
           moveQueue.push({ tx: tx + 1, ty, mx, my });
           this.handleMinotaurMoves();
           this.handleMinotaurMoves();
+          this.setState({ numMoves: this.state.numMoves + 1 });
         }
         break;
       case 'ArrowUp':
@@ -45,6 +50,7 @@ export default class Puzzle extends React.Component {
           moveQueue.push({ tx, ty: ty - 1, mx, my });
           this.handleMinotaurMoves();
           this.handleMinotaurMoves();
+          this.setState({ numMoves: this.state.numMoves + 1 });
         }
         break;
       case 'ArrowDown':
@@ -53,13 +59,19 @@ export default class Puzzle extends React.Component {
           moveQueue.push({ tx, ty: ty + 1, mx, my });
           this.handleMinotaurMoves();
           this.handleMinotaurMoves();
+          this.setState({ numMoves: this.state.numMoves + 1 });
         }
         break;
       case 'Space':
+        moveQueue.push({ tx, ty, mx, my });
+        if (this.handleMinotaurMoves() === 'no-move') break;
         this.handleMinotaurMoves();
-        this.handleMinotaurMoves();
+        this.setState({ numMoves: this.state.numMoves + 1 });
         break;
+      default:
+        return;
     }
+    e.preventDefault();
     this.advanceState();
   }
 
@@ -68,14 +80,15 @@ export default class Puzzle extends React.Component {
     const { tx, ty, mx, my } = moveQueue[moveQueue.length - 1] || this.state;
 
     if (tx < mx && maze[mx][my][0]) {
-      moveQueue.push({ tx, ty, mx: mx - 1, my });
+      return moveQueue.push({ tx, ty, mx: mx - 1, my });
     } else if (tx > mx && maze[mx][my][1]) {
-      moveQueue.push({ tx, ty, mx: mx + 1, my });
+      return moveQueue.push({ tx, ty, mx: mx + 1, my });
     } else if (ty < my && maze[mx][my][2]) {
-      moveQueue.push({ tx, ty, mx, my: my - 1 });
+      return moveQueue.push({ tx, ty, mx, my: my - 1 });
     } else if (ty > my && maze[mx][my][3]) {
-      moveQueue.push({ tx, ty, mx, my: my + 1});
+      return moveQueue.push({ tx, ty, mx, my: my + 1});
     }
+    return 'no-move';
   }
   advanceState = () => {
     const { ex, ey, moveQueue } = this.state;
@@ -93,8 +106,6 @@ export default class Puzzle extends React.Component {
     }
   }
 
-  componentWillReceiveProps = (props) => this.setState(this.getStateFromProps(props))
-
   reset = () => this.setState(this.getStateFromProps(this.props));
   getStateFromProps = (props) => {
     return {
@@ -110,14 +121,17 @@ export default class Puzzle extends React.Component {
       moveQueue: [],
       isLost: false,
       isWon: false,
+      numMoves: 0,
+      attempts: (this.state && this.state.attempts) ? this.state.attempts + 1 : 1,
     };
   }
 
   render() {
-    let { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon, clientHeight, clientWidth } = this.state;
+    let { maze, width, height, tx, ty, mx, my, ex, ey, isLost, isWon, numMoves, clientHeight, clientWidth } = this.state;
+    const { silly, size } = this.props;
     clientHeight = clientHeight || document.body.clientHeight;
     clientWidth = clientWidth || document.body.clientWidth;
-    const cellSize = 0.9 * Math.min(clientHeight / height, clientWidth / width);
+    const cellSize = Math.min((size || 0.9) * Math.min(clientHeight / height, clientWidth / width), 60);
     return (
       <div className="Puzzle" style={{ height: cellSize * height, width: cellSize * width }}>
           {
@@ -141,11 +155,11 @@ export default class Puzzle extends React.Component {
               </div>
             ))
           }
-          <div className="Puzzle__Exit" style={{ left: cellSize * ex, top: cellSize * ey, width: cellSize, height: cellSize }} />
-          <div className="Puzzle__Theseus" style={{ left: cellSize * (tx + 0.1), top: cellSize * (ty + 0.1), width: cellSize * 0.8, height: cellSize * 0.8 }} />
-          <div className="Puzzle__Minotaur" style={{ left: cellSize * (mx + 0.1), top: cellSize * (my + 0.1), width: cellSize * 0.8 , height: cellSize * 0.8 }} />
-          {isLost && <LoseMessage onClick={this.reset} />}
-          {isWon && <WinMessage {...this.props} />}
+          <div className={`Puzzle__Exit${silly ? '--silly' : ''}`} style={{ left: cellSize * ex, top: cellSize * ey, width: cellSize, height: cellSize, fontSize: cellSize * 0.8 }} >{silly && '🍌'}</div>
+          <div className={`Puzzle__Theseus${silly ? '--silly' : ''}`} style={{ left: cellSize * (tx + 0.1), top: cellSize * (ty + 0.1), width: cellSize * 0.8, height: cellSize * 0.8, fontSize: cellSize * 0.8 }} >{silly && '🐒'}</div>
+          <div className={`Puzzle__Minotaur${silly ? '--silly' : ''}`} style={{ left: cellSize * (mx + 0.1), top: cellSize * (my + 0.1), width: cellSize * 0.8 , height: cellSize * 0.8, fontSize: cellSize * 0.8 }} >{silly && '👮'}</div>
+          {isLost && <Modal onClose={this.props.closeModal && this.reset}><LoseMessage {...this.props} replay={this.reset} {...this.state} /></Modal>}
+          {isWon && <Modal onClose={this.props.closeModal && this.reset}><WinMessage {...this.props} replay={this.reset} {...this.state} /></Modal>}
       </div>
     );
   }

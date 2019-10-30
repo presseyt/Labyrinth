@@ -18,9 +18,9 @@ export default class Sidebar extends React.Component {
     return (
       <div className="Navigation">
           {problemSets.map((pSet, i) => (
-              <button key={i} onClick={() => onProblemSetSelect(pSet)}>{`Level ${i+1}`}</button>
+              <button key={i} onClick={() => onProblemSetSelect(pSet)}>{`LEVEL ${i+1}`}</button>
           ))}
-          <button onClick={() => onPageSelect('generate')}> Generate </button>
+          <button onClick={() => onPageSelect('generate')}> GENERATE </button>
       </div>
     );
   }
